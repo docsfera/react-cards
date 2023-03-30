@@ -1,5 +1,5 @@
 .form_radio {
-    margin-bottom: 10px;
+    margin-bottom: 17px;
 }
 .form_radio input[type=radio] {
     display: none;
@@ -8,19 +8,19 @@
     display: inline-block;
     cursor: pointer;
     position: relative;
-    padding-left: 90px;
-    margin-right: 0;
+    padding-left: 33px;
+    margin-left: 3px;
     line-height: 18px;
     user-select: none;
 }
 .form_radio label:before {
     content: "";
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     position: absolute;
     left: 0;
-    bottom: 1px;
+    bottom: 0;
     background: url('/src/assets/images/off.svg') 0 0 no-repeat;
 }
 

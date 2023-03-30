@@ -1,0 +1,16 @@
+.cards{
+    padding-right: 72px;
+    color: #F2F2F2;
+}
+.pagination{
+    display: flex;
+    margin: 40px 0 54px 12px;
+}
+.pagination__num{
+    margin: 0 25px;
+}
+@media (max-width: 640px) {
+    .cards{
+        padding-right: 0;
+    }
+}

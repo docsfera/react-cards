@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react'
+import "./App.css"
+import {useDispatch} from "react-redux"
+import {setMedias} from "./store/mainSlice"
+import {Data} from "./models/Data"
+import { useQuery, gql } from '@apollo/client'
+import {Routes, Router, Route} from "react-router-dom"
+import MainPage from "./components/MainPage/MainPage"
+import MoviePage from "./components/MoviePage/MoviePage"
 
 function App() {
+
+    const GET_PAGE = gql`
+      query {
+        Page(page: 1) {
+          media{
+            id
+            title {
+              romaji
+            }
+            type
+            season
+            format
+            tags {
+              name
+            }
+          }
+        }
+      }
+    `
+    const { data } = useQuery<Data>(GET_PAGE)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if(data && data.Page){
+            dispatch(setMedias(data.Page.media))
+        }
+    }, [data])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Routes>
+            <Route path="/" element={<MainPage/>}/>
+            <Route path="/movie/:id" element={<MoviePage/>}/>
+        </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

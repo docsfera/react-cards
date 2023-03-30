@@ -1,15 +1,15 @@
 import React from 'react'
-import "./Season.css"
+import "./MovieSeason.css"
 import {mainSelector, setMovieSeason} from "../../store/mainSlice"
 import {useAppDispatch} from "../../store"
 import {useSelector} from "react-redux"
 import {Season} from "../../models/Season"
 
-type seasonType = {
+interface MovieSeasonType {
     seasonName: Season
 }
 
-const Season: React.FC<seasonType> = ({seasonName}) => {
+const MovieSeason: React.FC<MovieSeasonType> = ({seasonName}) => {
     const dispatch = useAppDispatch()
     const {movieSeason} = useSelector(mainSelector)
 
@@ -28,13 +28,14 @@ const Season: React.FC<seasonType> = ({seasonName}) => {
                 value={seasonName}
                 name="drone"
                 checked={isSeasonChecked(seasonName)}
+                readOnly
             />
             <label
                 className="type__name"
                 onClick={() => setSeason(seasonName)}
-            >SUMMER</label>
+            >{seasonName}</label>
         </div>
     )
 }
 
-export default Season
+export default MovieSeason
